@@ -78,6 +78,10 @@ Used groupby-based filling strategy:
 
 ---
 
+🔹 .Feature engineering 
+
+created 3 tires from location like tiers1,tiers2,tiers3
+
 🔹 2. Encoding
 
 ✅ Binary Encoding (0 / 1)
@@ -98,6 +102,8 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 df[['num_ratings']] = scaler.fit_transform(df[['num_ratings']])
 
+applied logtransform on avg_cost_for_two
+
 ---
 
 🔹 4. Target Variable Creation
@@ -117,46 +123,125 @@ After creating target:
 
 df.drop('rating', axis=1, inplace=True)
 
-✔ Prevents model from cheating
-✔ Ensures proper learning
+✔ Prevents model from cheating  
+✔ Ensures proper learning  
 
 ---
 
 🎯 Problem Type
 
-- Classification Problem
-- Goal: Predict whether a restaurant is successful or not
+- Classification Problem  
+- Goal: Predict whether a restaurant is successful or not  
 
 ---
 
 📦 Final Dataset
 
-- Cleaned dataset
-- Missing values handled
-- Encoded features
-- Scaled numerical data
-- Target variable ("success") created
+- Cleaned dataset  
+- Missing values handled  
+- Encoded features  
+- Scaled numerical data  
+- Target variable ("success") created  
 
 ---
 
-🚀 Next Steps
+🚀 Week 3 – Model Training & Evaluation
 
-- Model training (Logistic Regression, Random Forest, etc.)
-- Hyperparameter tuning
-- Model evaluation (Accuracy, Precision, Recall, F1-score)
+🔹 1. Models Implemented
 
----
+The following machine learning models were trained and evaluated:
 
-🛠️ Tech Stack
-
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib / Seaborn
+- Logistic Regression  
+- Decision Tree  
+- Random Forest  
+- Gradient Boosting  
+- XGBoost  
+- Extra Trees  
 
 ---
 
+🔹 2. Model Evaluation Metrics
+
+Models were evaluated using:
+
+- Accuracy  
+- Precision  
+- Recall  
+- F1 Score  
+- ROC-AUC Score  
+
+A comparison table was created to analyze model performance.
+
+---
+
+🔹 3. Scaling Comparison
+
+Scaling was tested to understand its impact on model performance.
+
+- Scaling improved performance for:
+  - Logistic Regression  
+  - SVM  
+  - KNN  
+
+- Scaling did NOT improve performance for:
+  - Random Forest  
+  - Decision Tree  
+  - Gradient Boosting  
+
+📌 Observation:
+Random Forest performed better without scaling, as tree-based models are not sensitive to feature scaling.
+
+---
+
+🔹 4. Hyperparameter Tuning
+
+Hyperparameter tuning was applied to Random Forest using GridSearchCV.
+
+- Slight improvement in Accuracy  
+- Slight decrease in ROC-AUC  
+
+📌 Final Decision:
+Untuned Random Forest was selected as it achieved better ROC-AUC score.
+
+---
+
+🔹 5. Final Model Selection
+
+🏆 **Random Forest (without scaling, without tuning)** was selected as the final model.
+
+📊 Performance:
+- Accuracy: ~0.72  
+- ROC-AUC: ~0.80  
+
+📌 Reason:
+- Highest ROC-AUC score  
+- Stable performance  
+- Suitable for dataset  
+
+---
+
+🔹 6. Feature Importance Analysis
+
+Feature importance was extracted using Random Forest.
+
+- Identified top contributing features  
+- Visualized top features using bar plot  
+
+📌 Insight:
+Certain features like  avg_cost_for_two,north ,location_tier options significantly influence restaurant success.
+
+---
+
+🔹 7. Model Saving
+
+Final model was saved using pickle:
+
+import pickle   # for saving it
+
+with open('tuned_random_forest_zomato.pkl','wb') as f:
+  pickle.dump(rf1,f)
+
+  
 📌 Author
 
 - Jayalekshmi
