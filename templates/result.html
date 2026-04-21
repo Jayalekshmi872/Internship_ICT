@@ -1,0 +1,6 @@
+<h2>{{ message }}</h2>
+
+{% if suggestion %}
+<h3>💡GEN-AI Suggestions to Improve:</h3>
+<p>{{ suggestion | safe }}</p>
+{% endif %}

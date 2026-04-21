@@ -1,0 +1,179 @@
+<h1 style="text-align: center; color: #2c3e50;">
+  🍽️ Restaurant Success Predictor </h1>
+
+ <p style="text-align:center;">Predict whether your restaurant will success based on features </p>
+ <hr>
+<h2 style="text-align: center; color: #34495e;">📝 Enter Restaurant Details </h2>
+<p style="text-align: center; color: gray;">Fill the below details to predict success</p>
+<hr style="width: 60%;"><br>
+
+<form action="/predict" method="post">
+<div style="width: 400px; 
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">   
+
+    Num Ratings: <input type="number" name="num_ratings" min="65" max ="4972" required> <br> <br><br>
+   
+    Online Delivery:
+    <select name="online_delivery">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select><br><br><br>
+
+    Cuisine:<br>
+    <div style="border:1px solid #ccc;
+    padding:10px; width:200px; height:120px;
+    overflow-y:scroll;">
+        <label><input type="checkbox" name="cuisine" value="american">american</label> <br>                
+        <label><input type="checkbox" name="cuisine" value="arabian">arabian</label> <br>
+        <label><input type="checkbox" name="cuisine" value="asian">asian</label> <br>
+        <label><input type="checkbox" name="cuisine" value="bakery">bakery</label> <br>
+        <label><input type="checkbox" name="cuisine" value="bar">bar</label> <br>
+        <label><input type="checkbox" name="cuisine" value="bbq">bbq</label> <br>
+        <label><input type="checkbox" name="cuisine" value="beverages">beverages</label> <br>
+        <label><input type="checkbox" name="cuisine" value="biryani">biryani</label> <br>
+        <label><input type="checkbox" name="cuisine" value="burger">burger</label> <br>
+        <label><input type="checkbox" name="cuisine" value="cafe">cafe</label> <br>
+        <label><input type="checkbox" name="cuisine" value="chinese">chinese</label> <br>
+        <label><input type="checkbox" name="cuisine" value="continental">continental</label> <br>
+        <label><input type="checkbox" name="cuisine" value="dessert">dessert</label> <br>
+        <label><input type="checkbox" name="cuisine" value="desserts">desserts</label> <br>
+        <label><input type="checkbox" name="cuisine" value="eastern">eastern</label> <br>
+        <label><input type="checkbox" name="cuisine" value="european">european</label> <br>
+        <label><input type="checkbox" name="cuisine" value="fast">fast</label> <br>
+        <label><input type="checkbox" name="cuisine" value="finger">finger</label> <br>
+        <label><input type="checkbox" name="cuisine" value="food">food</label> <br>
+        <label><input type="checkbox" name="cuisine" value="goan">goan</label> <br>
+        <label><input type="checkbox" name="cuisine" value="healthy">healthy</label> <br>
+        <label><input type="checkbox" name="cuisine" value="ice">ice</label> <br>
+        <label><input type="checkbox" name="cuisine" value="indian">indian</label> <br>
+        <label><input type="checkbox" name="cuisine" value="italian">italian</label> <br>
+        <label><input type="checkbox" name="cuisine" value="japanese">japanese</label> <br>
+        <label><input type="checkbox" name="cuisine" value="kebab">kebab</label> <br>
+        <label><input type="checkbox" name="cuisine" value="kerala">kerala</label> <br>
+        <label><input type="checkbox" name="cuisine" value="mandi">mandi</label> <br>
+        <label><input type="checkbox" name="cuisine" value="mediterranean">mediterranean</label> <br>
+        <label><input type="checkbox" name="cuisine" value="middle">middle</label> <br>
+        <label><input type="checkbox" name="cuisine" value="mithai">mithai</label> <br>
+        <label><input type="checkbox" name="cuisine" value="modern">modern</label> <br>
+        <label><input type="checkbox" name="cuisine" value="momos">momos</label> <br>
+        <label><input type="checkbox" name="cuisine" value="mughlai">mughlai</label> <br>
+        <label><input type="checkbox" name="cuisine" value="north">north</label> <br>
+        <label><input type="checkbox" name="cuisine" value="oriental">oriental</label> <br>
+        <label><input type="checkbox" name="cuisine" value="pasta">pasta</label> <br>
+        <label><input type="checkbox" name="cuisine" value="pizza">pizza</label> <br>
+        <label><input type="checkbox" name="cuisine" value="restaurant">restaurant</label> <br>
+        <label><input type="checkbox" name="cuisine" value="rolls">rolls</label> <br>
+        <label><input type="checkbox" name="cuisine" value="salad">salad</label> <br>
+        <label><input type="checkbox" name="cuisine" value="sandwich">sandwich</label> <br>
+        <label><input type="checkbox" name="cuisine" value="seafood">seafood</label> <br>
+        <label><input type="checkbox" name="cuisine" value="shake">shake</label> <br>  
+        <label><input type="checkbox" name="cuisine" value="sichuan">sichuan</label> <br>
+        <label><input type="checkbox" name="cuisine" value="south">south</label> <br>
+        <label><input type="checkbox" name="cuisine" value="street">street</label> <br>
+        <label><input type="checkbox" name="cuisine" value="sushi">sushi</label> <br>
+        <label><input type="checkbox" name="cuisine" value="thai">thai</label> <br>
+  </div><br>
+
+  <!--show selected-->
+  <p><b>selected Cuisine: </b><span
+  id="selectedCuisine" style="color: #27ae60;"></span></p>
+<br><br>
+    Restaurant Type:
+      <select name="restaurant_type">
+        <option value="Cafe">Cafe</option>
+        <option value="Fast Food">Fast Food</option>
+        <option value="Casual Dining">Casual Dining</option>
+        <option value="Fine Dining">Fine Dining</option>
+        <option value="Dessert">Dessert</option>
+      </select><br><br><br>
+
+    City:
+      <select name="city">
+        <option value="Kochi" >Kochi</option>  
+        <option value="Delhi" >Delhi</option>  
+        <option value="Bangalore" >Bangalore</option>  
+        <option value="Mumbai" >Mumbai</option>  
+        <option value="Pune" >Pune</option>  
+        <option value="Kolkata" >Kolkata</option>  
+        <option value="Chandigarh" >Chandigarh</option>  
+        <option value="Ajmer" >Ajmer</option>  
+        <option value="Lucknow" >Lucknow</option>  
+        <option value="Coimbatore" >Coimbatore</option>  
+        <option value="Bhopal" >Bhopal</option>  
+        <option value="Nagpur" >Nagpur</option>  
+        <option value="Madurai" >Madurai</option>  
+        <option value="Visakhapatnam" >Visakhapatnam</option>  
+        <option value="Rourkela" >Rourkela</option>  
+        <option value="Chennai" >Chennai</option>  
+        <option value="Dehradun" >Dehradun</option>  
+        <option value="Cuttack" >Cuttack</option>  
+        <option value="Goa" >Goa</option>  
+        <option value="Agra" >Agra</option>  
+        <option value="Alappuzha" >Alappuzha</option>  
+        <option value="Aurangabad" >Aurangabad</option>  
+        <option value="Amritsar" >Amritsar</option>  
+        <option value="Amravati" >Amravati</option>  
+        <option value="Bhubaneswar" >Bhubaneswar</option>  
+        <option value="Allahabad" >Allahabad</option>  
+        <option value="Trivandrum" >Trivandrum</option>  
+        <option value="Surat" >Surat</option>  
+        <option value="Salem" >Salem</option>  
+        <option value="Dhanbad" >Dhanbad</option>  
+        <option value="Durgapur" >Durgapur</option>  
+        <option value="Haldia" >Haldia</option>
+      </select> <br><br><br>
+
+    Table Booking:
+      <select name="table_booking" required>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select><br><br><br>
+
+    Avg Cost: <input type="number" name="avg_cost_for_two" min = "80" max = "5500" required><br><br><br>
+
+    Price:
+    <select name="price">
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+    </select><br><br><br>
+
+    <!-- Location Tier:
+      <select name="location_tier"> -->
+         <!-- <option value="1">Tier 3</option> -->
+         <!-- <option value="2">Tier 2</option> --> 
+         <!-- <option value="3">Tier 1</option> --> 
+      <!-- </select><br> --> 
+</div>
+<br>
+<div
+    style ="text-align:center;margin-top:20px;">
+    <button type="submit" style="
+    background-color: #27ae60;
+    color:white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    ">
+    Predict</button>
+</form>
+<script>
+const checkboxes = document.querySelectorAll('input[name="cuisine"]');
+const display = document.getElementById('selectedCuisine');
+
+checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+        let selected = [];
+        checkboxes.forEach(c => {
+            if (c.checked) selected.push(c.value);
+        });
+        display.innerText = selected.join(", ");
+    });
+});
+</script>
