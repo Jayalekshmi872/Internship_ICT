@@ -269,27 +269,18 @@ Example:
 
 📸 Output Screens
 
+### - Input form page
+-![Input Page](assets/screenshots/input.png)
 
+### - Successful prediction
+-![Success](assets/screenshots/Success.png)
 
-- Input form page
-- Successful prediction
-- Failed prediction
+### - Failed prediction
+_![Failure](assets/screenshots/failure.png)
+
 
 ---
 
-📦 Project Structure
-
-project/
-│
-├── app.py
-├── requirements.txt
-├── README.md
-├── templates/
-│   ├── index.html
-│   └── result.html
-├── model files (.pkl)
-
----
 
 👩‍💻 Author
 
