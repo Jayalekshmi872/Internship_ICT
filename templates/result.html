@@ -1,6 +1,9 @@
-<h2>{{ message }}</h2>
+<h2 style = "text-align:center;">{{ message }}</h2>
 
 {% if suggestion %}
-<h3>💡GEN-AI Suggestions to Improve:</h3>
-<p>{{ suggestion | safe }}</p>
+<h3 style="text-align: center;">💡GEN-AI Suggestions to Improve:</h3>
+
+<div style="text-align: center;">
+    <p>{{ suggestion | safe }}</p>
+</div>
 {% endif %}
