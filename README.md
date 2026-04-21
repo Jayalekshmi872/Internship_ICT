@@ -202,18 +202,19 @@ The model is deployed using Flask.
 
 ---
 
-🎯 Prediction Logic
+🎯 Prediction Logic  
 
 Instead of direct prediction, probability is used:
 
-proba = model.predict_proba(features)[0][1]
-prediction = 1 if proba > 0.4 else 0
+proba = model.predict_proba(features)[0][1]  
+prediction = 1 if proba > 0.5 else 0  
 
-🔹 Why threshold = 0.4?
+🔹 Why threshold = 0.5?
 
-- Improves recall
-- Captures more potentially successful restaurants
-- Better suited for this dataset than default 0.5
+- Standard classification threshold  
+- Balances Precision and Recall  
+- Reduces false positives compared to lower thresholds  
+- More generalizable across datasets
 
 ---
 
