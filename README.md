@@ -2,30 +2,38 @@
 
 📌 Project Overview
 
-This project aims to analyze restaurant data and predict restaurant success using machine learning techniques. The workflow includes data scraping, exploratory data analysis (EDA), preprocessing, and feature engineering.
+This project predicts whether a restaurant will be successful or not using Machine Learning.
+It also provides AI-based suggestions (GenAI logic) to improve restaurant performance.
+
+🔹 Data Collection
+
+The dataset was collected using web scraping from:
+
+- Wikipedia (for structured information like city/area references)
+- Zomato (for restaurant-specific details such as ratings, cuisine, pricing, etc.)
 
 ---
 
-📊 Dataset Columns
+📊 Dataset Description
 
-Initial dataset contains:
+🔹 Initial Columns
 
-- "name" – Restaurant name
-- "url" – Source link
-- "rating" – Customer rating
-- "location" – Combined city + area
-- "city" – City name
-- "area" – Area name
-- "cuisine" – Type of food
-- "price" – Price category
-- "reviews" – Number of reviews
-- "restaurant_type" – Type (Cafe, Fast Food, etc.)
-- "num_ratings" – Total ratings count
-- "online_delivery" – Delivery availability
-- "table_booking" – Booking availability
-- "avg_cost_for_two" – Average cost for two people
-- "is_delivering_now" – Current delivery status
-- "switch_to_order_menu" – Order menu option
+- name – Restaurant name
+- url – Source link
+- rating – Customer rating
+- location – Combined city + area
+- city – City name
+- area – Area name
+- cuisine – Food types
+- price – Price category
+- reviews – Number of reviews
+- restaurant_type – Type (Cafe, Fast Food, etc.)
+- num_ratings – Total ratings count
+- online_delivery – Delivery availability
+- table_booking – Booking availability
+- avg_cost_for_two – Average cost
+- is_delivering_now
+- switch_to_order_menu
 
 ---
 
@@ -33,215 +41,256 @@ Initial dataset contains:
 
 🔹 Univariate Analysis
 
-- Distribution of "rating"
-- Distribution of "avg_cost_for_two"
-- Count of "restaurant_type"
-
----
+- Distribution of rating
+- Distribution of avg_cost_for_two
+- Count of restaurant_type
 
 🔹 Bivariate Analysis
 
-- "rating" vs "restaurant_type"
-- "rating" vs "price"
-- "avg_cost_for_two" vs "rating"
-
----
+- rating vs restaurant_type
+- rating vs price
+- avg_cost_for_two vs rating
 
 🔹 Data Cleaning
 
-- Removed duplicate rows using:
-
 df.drop_duplicates(inplace=True)
 
----
+🔹 Missing Values
 
-🔹 Missing Value Analysis
+Handled missing values in:
 
-- Identified missing values in:
-  - "rating"
-  - "cuisine"
-  - "price"
-  - "avg_cost_for_two"
+- rating
+- cuisine
+- price
+- avg_cost_for_two
 
 ---
 
 ⚙️ Week 2 – Data Preprocessing
 
-🔹 1. Handling Missing Values
+🔹 1. Missing Value Handling
 
-Used groupby-based filling strategy:
-
-- "rating" → filled using mean/median based on groups
-- "cuisine" → filled using mode
-- "price" → filled using related features
-- "avg_cost_for_two" → filled using grouped mean
+- rating → group-based mean/median
+- cuisine → mode
+- price → related feature-based
+- avg_cost_for_two → grouped mean
 
 ---
 
-🔹 .Feature engineering 
+🔹 2. Feature Engineering
 
-created 3 tires from location like tiers1,tiers2,tiers3
+- Created location tiers:
+  - Tier 1 → Major cities
+  - Tier 2 → Medium cities
+  - Tier 3 → Others
 
-🔹 2. Encoding
+---
 
-✅ Binary Encoding (0 / 1)
+🔹 3. Encoding
 
-Applied mapping:
+- Binary Encoding:
 
 df['online_delivery'] = df['online_delivery'].map({'Yes': 1, 'No': 0})
 df['table_booking'] = df['table_booking'].map({'Yes': 1, 'No': 0})
 
----
-
-🔹 3. Feature Scaling
-
-Applied StandardScaler on numerical feature:
-
-from sklearn.preprocessing import StandardScaler
-
-scaler = StandardScaler()
-df[['num_ratings']] = scaler.fit_transform(df[['num_ratings']])
-
-applied logtransform on avg_cost_for_two
+- Cuisine → TF-IDF Vectorization
+- Restaurant Type → One Hot Encoding (OHE)
 
 ---
 
-🔹 4. Target Variable Creation
+🔹 4. Feature Scaling
 
-Converted rating into classification target:
+- Applied StandardScaler on:
+
+num_ratings
+
+- Applied Log Transformation on:
+
+avg_cost_for_two
+
+---
+
+🔹 5. Target Variable
 
 df['success'] = df['rating'].apply(lambda x: 1 if x >= 4 else 0)
 
-- 1 → Successful restaurant
-- 0 → Not successful
+- 1 → Successful
+- 0 → Not Successful
 
 ---
 
-🔹 5. Avoiding Data Leakage
-
-After creating target:
+🔹 6. Avoiding Data Leakage
 
 df.drop('rating', axis=1, inplace=True)
-
-✔ Prevents model from cheating  
-✔ Ensures proper learning  
 
 ---
 
 🎯 Problem Type
 
-- Classification Problem  
-- Goal: Predict whether a restaurant is successful or not  
+- Binary Classification
+- Goal → Predict restaurant success
 
 ---
 
-📦 Final Dataset
+🚀 Week 3 – Model Training
 
-- Cleaned dataset  
-- Missing values handled  
-- Encoded features  
-- Scaled numerical data  
-- Target variable ("success") created  
+🔹 Models Used
 
----
-
-🚀 Week 3 – Model Training & Evaluation
-
-🔹 1. Models Implemented
-
-The following machine learning models were trained and evaluated:
-
-- Logistic Regression  
-- Decision Tree  
-- Random Forest  
-- Gradient Boosting  
-- XGBoost  
-- Extra Trees  
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- Gradient Boosting
+- XGBoost
+- Extra Trees
 
 ---
 
-🔹 2. Model Evaluation Metrics
+🔹 Evaluation Metrics
 
-Models were evaluated using:
-
-- Accuracy  
-- Precision  
-- Recall  
-- F1 Score  
-- ROC-AUC Score  
-
-A comparison table was created to analyze model performance.
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
 
 ---
 
-🔹 3. Scaling Comparison
+🔹 Scaling Observation
 
-Scaling was tested to understand its impact on model performance.
+Scaling helped:
 
-- Scaling improved performance for:
-  - Logistic Regression  
-  - SVM  
-  - KNN  
+- Logistic Regression
+- SVM
+- KNN
 
-- Scaling did NOT improve performance for:
-  - Random Forest  
-  - Decision Tree  
-  - Gradient Boosting  
+Scaling NOT needed:
 
-📌 Observation:
-Random Forest performed better without scaling, as tree-based models are not sensitive to feature scaling.
+- Random Forest
+- Decision Tree
 
 ---
 
-🔹 4. Hyperparameter Tuning
+🔹 Final Model Selection
 
-Hyperparameter tuning was applied to Random Forest using GridSearchCV.
+🏆 Random Forest (without scaling, without tuning)
 
-- Slight improvement in Accuracy  
-- Slight decrease in ROC-AUC  
+- Accuracy: ~0.72
+- ROC-AUC: ~0.80
 
-📌 Final Decision:
-Untuned Random Forest was selected as it achieved better ROC-AUC score.
-
----
-
-🔹 5. Final Model Selection
-
-🏆 **Random Forest (without scaling, without tuning)** was selected as the final model.
-
-📊 Performance:
-- Accuracy: ~0.72  
-- ROC-AUC: ~0.80  
-
-📌 Reason:
-- Highest ROC-AUC score  
-- Stable performance  
-- Suitable for dataset  
+✔ Best performance
+✔ Stable results
 
 ---
 
-🔹 6. Feature Importance Analysis
+💾 Model Saving
 
-Feature importance was extracted using Random Forest.
-
-- Identified top contributing features  
-- Visualized top features using bar plot  
-
-📌 Insight:
-Certain features like  avg_cost_for_two,north ,location_tier options significantly influence restaurant success.
+import pickle
+pickle.dump(model, open("random_forest_model_zomato.pkl", "wb"))
 
 ---
 
-🔹 7. Model Saving
+🌐 Flask Web Application
 
-Final model was saved using pickle:
+The model is deployed using Flask.
 
-import pickle   # for saving it
+🔹 Features:
 
-with open('tuned_random_forest_zomato.pkl','wb') as f:
-  pickle.dump(rf1,f)
+- User input form
+- Real-time prediction
+- Confidence score
+- AI-based suggestions
 
-  
-📌 Author
+---
 
-- Jayalekshmi
+🎯 Prediction Logic
+
+Instead of direct prediction, probability is used:
+
+proba = model.predict_proba(features)[0][1]
+prediction = 1 if proba > 0.4 else 0
+
+🔹 Why threshold = 0.4?
+
+- Improves recall
+- Captures more potentially successful restaurants
+- Better suited for this dataset than default 0.5
+
+---
+
+🤖 GenAI Suggestion System
+
+This project includes a rule-based intelligent suggestion engine.
+
+🔹 How it works
+
+Suggestions are generated based on:
+
+1. Model prediction (success/failure)
+2. Input features (delivery, booking, pricing)
+
+---
+
+🔹 Case 1: SUCCESS (prediction = 1)
+
+Even when successful, the system provides growth suggestions.
+
+Example:
+
+🎉 Great! Your restaurant is performing well.
+🚀 Adding online delivery can further boost growth.
+📅 Table booking can improve customer experience.
+⭐ Maintain food quality.
+📢 Continue marketing strategies.
+
+---
+
+🔹 Case 2: FAILURE (prediction = 0)
+
+Provides corrective suggestions.
+
+Example:
+
+🚀 Enable online delivery
+📅 Add table booking
+💰 Reduce pricing
+⭐ Improve food quality
+📢 Increase marketing
+🍽️ Expand menu
+
+---
+
+🔹 Key Idea
+
+- Rule-based intelligent system
+- Based on real inputs
+- Works alongside ML prediction
+
+---
+
+📸 Output Screens
+
+
+
+- Input form page
+- Successful prediction
+- Failed prediction
+
+---
+
+📦 Project Structure
+
+project/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── templates/
+│   ├── index.html
+│   └── result.html
+├── model files (.pkl)
+
+---
+
+👩‍💻 Author
+
+Jayalekshmi
