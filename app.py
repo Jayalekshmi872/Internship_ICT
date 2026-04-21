@@ -79,7 +79,7 @@ def predict():
     # 🔹 Predict using MODEL (correct)
     proba = model.predict_proba(features)[0][1]
 
-    prediction = 1 if proba > 0.4 else 0
+    prediction = 1 if proba > 0.5 else 0
 
     return redirect(url_for('result', pred=int(prediction),prob = float(proba) ,online_delivery =online_delivery ,
                             table_booking= table_booking ,avg_cost= avg_cost ))
