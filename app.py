@@ -154,4 +154,4 @@ def generate_suggestion(online_delivery, table_booking, avg_cost, pred):
     return "<br>".join(suggestions)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port = 5000)
