@@ -8,10 +8,10 @@ app = Flask(__name__)
  #   app.run(debug=True)
 
 # ✅ Load everything separately
-model = pickle.load(open("random_forest_model_zomato.pkl", "rb"))
-tfidf = pickle.load(open("tfidf.pkl", "rb"))
-ohe = pickle.load(open("ohe.pkl", "rb"))
-scaler = pickle.load(open("scaler.pkl", "rb"))
+model = pickle.load(open("models/random_forest_model_zomato.pkl", "rb"))
+tfidf = pickle.load(open("models/tfidf.pkl", "rb"))
+ohe = pickle.load(open("models/ohe.pkl", "rb"))
+scaler = pickle.load(open("models/scaler.pkl", "rb"))
 
 
 # 🔹 City → Tier function (same as training)
